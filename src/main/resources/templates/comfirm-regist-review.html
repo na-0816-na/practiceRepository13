@@ -1,5 +1,21 @@
 <!DOCTYPE html>
-<html>
-<head><title>確認</title></head>
-<body><h1>動作テスト</h1></body>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>完了</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+		
+	<h2>完了</h2>
+
+	<br>
+	<p>処理が完了しました。</p>
+	<p th:text="${msg}"></p>
+	<br>
+	<br>
+
+	<a th:href="@{/top}">トップページに戻る</a>
+
+</body>
 </html>
