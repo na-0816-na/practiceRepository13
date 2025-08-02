@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${categoryName} + ' の検索結果'">カテゴリ検索結果</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div th:if="${recipeList} != null">
+    <h2 th:text="${categoryName} + ' の検索結果'">カテゴリ検索結果</h2>
+
+    <table class="recipet-list">
+        <tr>
+            <th colspan="2">評価</th><th>料理名</th><th>キャッチフレーズ</th><th>お気に入り</th>
+        </tr>
+
+        <tr th:each="recipe : ${recipeList}">
+            <td>
+                <form th:action="@{/search-recipe}" method="POST">
+                    <input type="hidden" name="recipeName" th:value="${recipe.recipeName}">
+                    <input type="submit" value="一覧" class="tbtn">
+                </form>
+            </td>
+            <td>
+                <form th:action="@{/show-recipe-form}" method="POST">
+                    <input type="hidden" name="recipeNamName" th:value="${recipe.recipeNamName}">
+                    <input type="submit" value="登録" class="tbtn">
+                </form>
+            </td>
+            <td th:text="${recipe.restaurantName}"></td>
+            <td th:text="${recipe.catchPhrase}"></td>
+            <td th:text="${recipe.category}"></td>
+            <td th:text="${recipe.favorite}"></td>
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>

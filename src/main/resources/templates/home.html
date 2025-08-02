@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>ホーム</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+	<h2>ホーム</h2>
+
+		
+    	<br>
+		<form th:action="@{/recipe-search}" method="get">
+		    <button type="submit">検索する</button>
+		</form><br>
+		
+		
+		<br><form th:action="@{/show-recipe-form}" method="get">
+		<button type="submit">レシピの登録</button>
+		</form><br>
+		
+		<h3>【カテゴリ】</h3>
+
+		<ul>
+		        <li>
+		            <a th:href="@{/category(type='noknives')}">包丁を使わない料理</a>
+		        </li>
+		        <li>
+		            <a th:href="@{/category(type='noheat')}">火を使わない料理</a>
+		        </li>
+		        <li>
+		            <a th:href="@{/category(type='frozen')}">冷凍保存可能な料理</a>
+		        </li>
+				<li>
+					 <a th:href="@{/category(type='bulk cooking')}">大量調理OKなもの</a>
+				</li>
+		    </ul>
+
+		
+		<br>
+		<form th:action="@{/show-edit-form}" method="get">
+		<button type="submit">レシピの編集</button>
+		</form><br>
+		
+		<br>
+		<form th:action="@{/remove-recipe}" method="get">
+		<button type="submit">レシピの削除</button>
+		</form><br>
+		
+		<br>
+		<form th:action="@{/favorite}" method="get">
+		<button type="submit">お気に入りしたレシピ</button>
+		</form><br>
+		
+		<br>
+		<form th:action="@{/logout}" method="get">
+		<button type="submit">ログアウト</button>
+		</form><br>
+
+
+</body>
+</html>

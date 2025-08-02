@@ -6,12 +6,17 @@ import lombok.Data;
 
 @Data
 public class Review {
-
+	
+	private String userName;
 	private Integer reviewId;
-	private Integer restaurantId;
-	private String userId;
-	private Date visitDate;
-	private Integer rating;
-	private String comment;
+	private Integer recipeId;
+	private Integer userId;
+	private Date postDate;
+	private Integer deliciousness;
+	private Integer difficulty;
+	private Integer quickly;
+
+	
+	
 
 }

@@ -1,24 +1,14 @@
 package com.example.demo.controller;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.example.demo.entity.Review;
 import com.example.demo.form.ReviewRegistForm;
-import com.example.demo.service.RegistService;
 
-import lombok.RequiredArgsConstructor;
-
-@Controller
-@RequiredArgsConstructor
-public class RegistController {
-
-	private final RegistService service;
-
+public class RegistReviewController {
 	
 	/*--- レビュー登録画面表示リクエスト ---*/
 	@PostMapping("/show-review-form")
@@ -59,17 +49,20 @@ public class RegistController {
 			return "regist-review";
 		}
 
-		Review r = new Review();
+		/*Review r = new Review();
 		r.setRestaurantId(form.getRestaurantId());
 		r.setUserId(form.getUserId());
 		r.setVisitDate(form.getVisitDate());
 		r.setRating(form.getRating());
 		r.setComment(form.getComment());
-		service.regist(r);
+		service.regist(r);*/
 		
 		redirectAttributes.addFlashAttribute("msg", "(レビュー登録)");
 		
 		return "redirect:/complete";
-	}
+	
+
+}
+
 
 }

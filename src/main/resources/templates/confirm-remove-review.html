@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>削除確認</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+	
+	<h2>レシピ削除確認</h2>
+
+	<table class="confirm-table" th:object="${RecipeRegistForm}">
+		
+		<tr>
+		 	<td class="guide">【ユーザーネーム】</td>
+			<td th:text="*{userName}"></td>
+		</tr>
+		<tr>
+			<td class="guide">【料理名】</td>
+			<td th:text="*{recipeName}"></td>
+		</tr>
+		<tr>
+			<td class="guide">【キャッチフレーズ】</td>
+			<td th:text="*{catchPhrase}"></td>
+		</tr>
+		<tr>
+			<td class="guide">【カテゴリ】</td>
+			<td th:text="*{category}"></td>
+		</tr>
+		<tr>
+			<td class="guide">【つくり方】</td>
+			<td th:text="*{howTo}"></td>
+		</tr>
+		<tr>
+			<td class="guide">【登録日】</td>
+			<td th:text="*{postDate}"></td>
+		</tr>
+	</table>
+	<br>
+	
+    <form th:action="@{/confirm-regist-recipe}" method="POST"
+			th:object="${RecipeRegistForm}">
+    	<input type="hidden" th:field="*{userName}">
+    	<input type="hidden" th:field="*{recipeName}">
+    	<input type="hidden" th:field="*{catchPhrase}">
+    	<input type="hidden" th:field="*{category}">
+    	<input type="hidden" th:field="*{howTo}">
+		<input type="hidden" th:field="*{postDate}">
+    	<input type="submit" value="削除する" class="btn">
+   	</form>
+
+    <form th:action="@{/show-recipe-form-ret}" method="POST"
+			th:object="${RecipeRegistForm}">
+    	<input type="hidden" th:field="*{userName}">
+    	<input type="hidden" th:field="*{recipeName}">
+    	<input type="hidden" th:field="*{catchPhrase}">
+    	<input type="hidden" th:field="*{category}">
+    	<input type="hidden" th:field="*{howTo}">
+    	<input type="hidden" th:field="*{postDate}" class="btn">
+    	<input type="submit" value="もどる" class="btn">
+   	</form>
+
+</body>
+</html>

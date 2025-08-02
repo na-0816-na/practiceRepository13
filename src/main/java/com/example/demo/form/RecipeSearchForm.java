@@ -3,10 +3,11 @@ package com.example.demo.form;
 import lombok.Data;
 
 @Data
-public class ReviewSearchForm {
+
+public class RecipeSearchForm {
 	
-	private Integer recipeId;
 	private String recipeName;
+	private String category;
 	
 
 }

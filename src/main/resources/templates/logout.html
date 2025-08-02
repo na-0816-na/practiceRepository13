@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>ログアウトしますか？</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+		
+	<h1>ログアウトしますか？
+	</h1>
+
+	  
+	  <div>
+	  	    <form th:action="@{/complete}" method="POST">
+	      		<input type="submit" value="はい" class="btn">
+	   	  	</form>
+	  	</div>
+	  	<br>
+	  	<div>
+	  	    <form th:action="@{/home}" method="POST">
+	      		<input type="submit" value="いいえ" class="btn">
+	   	  	</form>
+	  	</div>
+
+ </body>
+</html>

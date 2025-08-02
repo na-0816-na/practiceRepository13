@@ -6,7 +6,7 @@ import com.example.demo.entity.Review;
 
 public interface ReviewListService {
 	
-	List<Review> findByRestaurantId(int restaurantId);
+	List<Review> selectByRecipeId(Integer recipeId);
 	
 
 }

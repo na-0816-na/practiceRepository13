@@ -14,9 +14,9 @@ public class ReviewListServiceImpl implements ReviewListService {
 
 	private final ReviewRepository repository;
 	@Override
-	public List<Review> findByRestaurantId(int restaurantId) {
+	public List<Review> selectByRecipeId(Integer recipeId) {
 		
-		List<Review> list = repository.selectByRestaurantId(restaurantId);
+		List<Review> list = repository.selectByRecipeId(recipeId);
 		// TODO 自動生成されたメソッド・スタブ
 		return null;
 	}

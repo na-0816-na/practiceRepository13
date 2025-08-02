@@ -18,60 +18,60 @@ public class ReviewRepositoryImpl implements ReviewRepository {
 
 	private final JdbcTemplate jdbcTemplate;
 	
+
 	@Override
 	public void add(Review review) {
 
 		String sql =
-			" INSERT INTO t_review " +
-			" (restaurant_id, user_id, visit_date, rating, comment) " +
-			" VALUES (?, ?, ?, ?, ?) ";
+				" INSERT INTO t_review " +
+				" (recipe_id, user_id, post_date, deliciousness, difficulty, quickly) " +
+				" VALUES (?, ?, ?, ?, ?) ";
 
-		jdbcTemplate.update(sql, review.getRestaurantId(),
-								 review.getUserId(),
-								 review.getVisitDate(),
-								 review.getRating(),
-								 review.getComment()		);
-		
+			jdbcTemplate.update(sql, review.getRecipeId(),
+									 review.getUserId(),
+									 review.getPostDate(),
+									 review.getDeliciousness(),
+									 review.getDifficulty(),
+									 review.getQuickly());
+			
+	
 	}
+@Override	
+public List<Review> selectByRecipeId(Integer recipeId) {
 
-	@Override
-	public List<Review> selectByRestaurantId(int restaurantId) {
+	String sql = 
+			"  SELECT                 " + 
+			"    user_name,       " + 
+			"    post_date,          " + 
+			"    deliciousness,              " + 
+			"    difficulty,             " + 
+			"    quickly             " + 
+			"  FROM                   " + 
+			"    t_review             " + 
+			"  JOIN m_user mu                         " +
+			"  	   ON tr.user_id = mu.user_id;  " +
+			"  WHERE                  " + 
+			"    recipe_id = ?    " + 
+			"  ORDER BY               " + 
+			"    post_date DESC,     " + 
+			"    review_id ASC        ";
 		
-		String sql = 
-				"  SELECT                 " + 
-				"    review_id,           " + 
-				"    restaurant_id,       " + 
-				"    user_id,             " + 
-				"    visit_date,          " + 
-				"    rating,              " + 
-				"    comment              " + 
-				"  FROM                   " + 
-				"    t_review             " + 
-				"  WHERE                  " + 
-				"    restaurant_id = ?    " + 
-				"  ORDER BY               " + 
-				"    visit_date DESC,     " + 
-				"    review_id ASC        ";
+		// SQLで検索（プレースホルダ：p）
+		List<Map<String, Object>> list 
+				= jdbcTemplate.queryForList(sql, recipeId);
 		
-		// SQLで検索（プレースホルダ：引数で受け取ったrestaurantId）
-				List<Map<String, Object>> list 
-								= jdbcTemplate.queryForList(sql, restaurantId);
-				
-				// 値の取得⇒結果の格納
-				List<Review> result = new ArrayList<Review>(); // 結果の初期化
-				for (Map<String, Object> one : list) {
-					Review review = new Review();
-					review.setReviewId((int)one.get("review_id"));
-					review.setRestaurantId((int)one.get("restaurant_id"));
-					review.setUserId((String)one.get("user_id"));
-					review.setVisitDate((Date)one.get("visit_date"));
-					review.setRating((int)one.get("rating"));
-					review.setComment((String)one.get("comment"));
-					result.add(review);
-				}
-
-				return result;
-			}
-
+		// 値の取得⇒結果の格納
+		List<Review> result = new ArrayList<Review>(); // 結果の初期化
+		for (Map<String, Object> one : list) {
+			Review review = new Review();
+			review.setUserName((String)one.get("user_name"));
+			review.setPostDate((Date)one.get("post_date"));
+			review.setDeliciousness((Integer)one.get("deliciousness"));
+			review.setDifficulty((Integer)one.get("difficulty"));
+			review.setQuickly((Integer)one.get("quickly"));
+			result.add(review);
+		}
 		
+		return result;
+	}
 	}

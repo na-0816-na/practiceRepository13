@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>ログイン</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+	<h2>ログイン</h2>
+
+    <form th:action="@{/login}" method="POST" 
+    		th:object="${loginForm}">
+		【Email】<br>
+		<input type="text" th:field="*{email}"><br>
+		<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error-msg"></div>
+		<div th:if="${#fields.hasGlobalErrors()}" th:each="err : ${#fields.globalErrors()}" class="error-msg">
+		    <p th:text="${err}"></p>
+		</div>
+		
+		<br>
+    	【PW】<br>
+    	<input type="text" th:field="*{passWord}"><br>
+    	<div th:if="${#fields.hasErrors('passWord')}" th:errors="*{passWord}" class="error-msg"></div>
+		<div th:if="${#fields.hasGlobalErrors()}" th:each="err : ${#fields.globalErrors()}" class="error-msg">
+		    <p th:text="${err}"></p>
+		</div>
+
+		<br>
+    	
+    	
+    	<input type="submit" value="送信" class="btn">
+    </form>
+
+	<br>
+	<a th:href="@{/top}">トップページに戻る</a>
+
+</body>
+</html>

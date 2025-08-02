@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Welcome to recipe for single</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+		
+	<h1>Welcome to recipe for single
+	</h1>
+
+	  
+	  <div>
+	  	    <form th:action="@{/login}" method="POST">
+	      		<input type="submit" value="ログイン" class="btn">
+	   	  	</form>
+	  	</div>
+	  	<br>
+	  	<div>
+	  	    <form th:action="@{/registration}" method="POST">
+	      		<input type="submit" value="新規ユーザー登録" class="btn">
+	   	  	</form>
+	  	</div>
+
+	  </body>
+	  </html>

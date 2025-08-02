@@ -10,9 +10,9 @@
 <h2>レビュー一覧</h2>
 
 <div th:object="${reviewSearchForm}">
-【店舗】<br>
-<p th:text="*{restaurantId}
-               + '　' + *{restaurantName}"></p>
+【レシピ名】<br>
+<p th:text="*{recipeId}
+               + '　' + *{recipeName}"></p>
 </div>
 
 <br>
@@ -22,22 +22,42 @@
 <div th:if="${reviewList} != null">
 	<table class="review-list">
 		<tr>
-			<th>ID</th><th>ユーザ</th><th>来店日</th><th>評価</th><th>一言コメント</th>
+			<th>レビュー</th><th>ユーザ</th><th>投稿日</th><th>美味しさ</th><th>時短</th><th>難易度</th><th>お気に入り</th>
 		</tr>
 
 		<tr th:each="review : ${reviewList}">
+			
+			<td>
+				<form th:action="@{/show-edit-form}" method="POST">
+					<input type="hidden" name="reviewId"       th:value="${review.reviewId}">
+					<input type="hidden" name="recipeId"   th:value="${reviewSearchForm.recipeId}">
+					<input type="hidden" name="recipeName" th:value="${reviewSearchForm.recipeName}">
+					<input type="hidden" name="userName"         th:value="${review.userName}">
+					<input type="hidden" name="postDate"      th:value="${review.postDate}">
+					<input type="hidden" name="deliciousness"         th:value="${review.deliciousness}">
+					<input type="hidden" name="difficulty"         th:value="${review.difficulty}">
+					<input type="hidden" name="quickly"         th:value="${review.quickly}">
+					<input type="hidden" name="favorite"         th:value="${review.favorite}">
+					<input type="submit" value="削除" class="tbtn">
+				</form>
+			</td>
 			<td th:text="${review.reviewId}"></td>
-			<td th:text="${review.userId}"></td>
-			<td th:text="${review.visitDate}"></td>
-			<td th:text="${review.rating}"></td>
-			<td th:text="${review.comment}"></td>
+			<td th:text="${review.recipeId}"></td>
+			<td th:text="${review.recipeName}"></td>
+			<td th:text="${review.userName}"></td>
+			<td th:text="${review.postDate}"></td>
+			<td th:text="${review.deliciousness}"></td>
+			<td th:text="${review.difficulty}"></td>
+			<td th:text="${review.quickly}"></td>
+			<td th:text="${review.favorite}"></td>			
+			
 		</tr>
 
 	</table>
 </div>
 
 <br>
-<a th:href="@{/top}">トップページに戻る</a>
+<a th:href="@{/home}">ホームに戻る</a>
 
 </body>
 </html>
