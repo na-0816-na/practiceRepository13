@@ -7,7 +7,10 @@ import lombok.Data;
 public class RecipeSearchForm {
 	
 	private String recipeName;
-	private String category;
+	private String categoryName;
+	private Integer categoryId;
+	
+
 	
 
 }

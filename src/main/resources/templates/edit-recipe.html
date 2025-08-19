@@ -9,8 +9,8 @@
 
 	<h2>レシピの編集</h2>
 
-    <form th:action="@{/show-edit-form}" method="POST" 
-    		th:object="${RecipeEditForm}">
+    <form th:action="@{/show-edit-form}" method="GET" 
+    		th:object="${editRecipeForm}">
 		
     	【ユーザーネーム】<br>
     	<input type="text" th:field="*{userName}"><br>
@@ -30,6 +30,7 @@
 		<option value="1">包丁を使わない料理</option>
 		<option value="2">火を使わない料理</option>
 		<option value="3">冷凍保存可能な料理</option>
+		<option value="4">大量調理OKなもの</option>
 		</select><br>
     	<div th:if="${#fields.hasErrors('category')}" th:errors="*{category}" class="error-msg"></div>
 		<br>

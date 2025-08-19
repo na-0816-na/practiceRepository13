@@ -23,20 +23,14 @@
 		<h3>【カテゴリ】</h3>
 
 		<ul>
-		        <li>
-		            <a th:href="@{/category(type='noknives')}">包丁を使わない料理</a>
-		        </li>
-		        <li>
-		            <a th:href="@{/category(type='noheat')}">火を使わない料理</a>
-		        </li>
-		        <li>
-		            <a th:href="@{/category(type='frozen')}">冷凍保存可能な料理</a>
-		        </li>
-				<li>
-					 <a th:href="@{/category(type='bulk cooking')}">大量調理OKなもの</a>
-				</li>
-		    </ul>
-
+		    <li><a th:href="@{/category-search(categoryId=1)}">包丁を使わない料理</a></li>
+			<br>
+		    <li><a th:href="@{/category-search(categoryId=2)}">火を使わない料理</a></li>
+			<br>
+		    <li><a th:href="@{/category-search(categoryId=3)}">冷凍保存可能な料理</a></li>
+			<br>
+		    <li><a th:href="@{/category-search(categoryId=4)}">大量調理OKなもの</a></li>
+		</ul>
 		
 		<br>
 		<form th:action="@{/show-edit-form}" method="get">
@@ -54,7 +48,7 @@
 		</form><br>
 		
 		<br>
-		<form th:action="@{/logout}" method="get">
+		<form th:action="@{/logout}" method="post">
 		<button type="submit">ログアウト</button>
 		</form><br>
 

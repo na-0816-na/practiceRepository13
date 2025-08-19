@@ -9,10 +9,10 @@
 		
 	<h2>レビュー登録確認</h2>
 
-	<table class="confirm-table" th:object="${reviewRegistForm}">
+	<table class="confirm-table" th:object="${registReviewForm}">
 		<tr>
 			<td class="guide">【レシピ】</td>
-			<td th:text="*{recipeId} + '　' + *{recipeName}"></td>
+			<td th:text="*{recipeName}"></td>
 		</tr>
 		<tr>
 			<td class="guide">【ユーザーネーム】</td>
@@ -27,7 +27,7 @@
 			<td th:text="*{deliciousness}"></td>
 		</tr>
 		<tr>
-			<td class="guide">【難易度】(1-5)</td>
+			<td class="guide">【簡単さ】(1-5)</td>
 			<td th:text="*{difficulty}"></td>
 		</tr>
 		<tr>
@@ -38,18 +38,19 @@
 	<br>
 	
     <form th:action="@{/confirm-regist-review}" method="POST"
-			th:object="${reviewRegistForm}">
+			th:object="${registReviewForm}">
     	<input type="hidden" th:field="*{recipeId}">
     	<input type="hidden" th:field="*{userName}">
     	<input type="hidden" th:field="*{postDate}">
     	<input type="hidden" th:field="*{deliciousness}">
 		<input type="hidden" th:field="*{difficulty}">
 		<input type="hidden" th:field="*{quickly}">
-    	<input type="submit" value="登録実行" class="btn">
+		
+    	<input type="submit" value="登録する" class="btn">
    	</form>
 
     <form th:action="@{/show-review-form-ret}" method="POST"
-			th:object="${reviewRegistForm}">
+			th:object="${registReviewForm}">
 			<input type="hidden" th:field="*{recipeId}">
 		<input type="hidden" th:field="*{userName}">
 		<input type="hidden" th:field="*{postDate}">

@@ -10,10 +10,9 @@
 	<h2>レビュー登録</h2>
 
     <form th:action="@{/regist-review}" method="POST" 
-    		th:object="${reviewRegistForm}">
-		【レシピID】<br>
-		<p th:text="*{recipeId}
-		               + '　' + *{recipeName}"></p>
+    		th:object="${registReviewForm}">
+		【レシピ名】<br>
+		<p th:text=" *{recipeName}"></p>
     	<input type="hidden" th:field="*{recipeId}">
     	<input type="hidden" th:field="*{recipeName}">
     	<div th:if="${#fields.hasErrors('recipeId')}" th:errors="*{recipeId}" class="error-msg"></div>
@@ -38,7 +37,7 @@
 				</select><br>
 		    	<div th:if="${#fields.hasErrors('deliciousness')}" th:errors="*{deliciousness}" class="error-msg"></div>
 				<br>
-		【難易度】(1-5)<br>
+		【簡単さ】(1-5)<br>
 				<select th:field="*{difficulty}">
 					<option value="0">選択してください。</option>
 					<!-- 固定のオプション1-5 -->

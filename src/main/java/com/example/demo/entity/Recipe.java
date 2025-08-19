@@ -1,6 +1,6 @@
 package com.example.demo.entity;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,7 +18,8 @@ public class Recipe {
 	private String howTo;
 	private Integer categoryId;
 	private String categoryName;
-	private Date postDate;
+	private LocalDate postDate;
+	private String userName;
 
  
 }

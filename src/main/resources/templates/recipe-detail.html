@@ -1,51 +1,55 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>レシピ登録</title>
-<link rel="stylesheet" th:href="@{/css/style.css}">
+    <meta charset="UTF-8">
+    <title th:text="${recipe.recipeName} + ' の詳細'">レシピ詳細</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 
-	<h2>レシピ登録</h2>
-
-    <form th:action="@{/show-recipe-form}" method="POST" 
-    		th:object="${RecipeRegistForm}">
+	<h4>
+	    <span th:text="${recipe.recipeName}"></span>
 		
-    	【ユーザーネーム】<br>
-    	<input type="text" th:field="*{userName}"><br>
-    	<div th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" class="error-msg"></div>
-		<br>
-		【料理名】<br>
-		<input type="text" th:field="*{recipeName}" class="recipeName" ><br>
-		<div th:if="${#fields.hasErrors('recipeName')}" th:errors="*{recipeName}" class="error-msg"></div>
-		<br>
-		【キャッチフレーズ】<br>
-		<input type="text" th:field="*{catchPhrase}"><br>
-		<div th:if="${#fields.hasErrors('catchPhrase')}" th:errors="*{catchPhrase}" class="error-msg"></div>
-		<br>
-    	【カテゴリ】(1-5)<br>
-    	<select th:field="*{category}">
-		<option value="0">選択してください。</option>
-		<option value="1">包丁を使わない料理</option>
-		<option value="2">火を使わない料理</option>
-		<option value="3">冷凍保存可能な料理</option>
-		</select><br>
-    	<div th:if="${#fields.hasErrors('category')}" th:errors="*{category}" class="error-msg"></div>
-		<br>
-    	【つくり方】<br>
-    	<input type="text" th:field="*{howTo}" class="howTo" ><br>
-    	<div th:if="${#fields.hasErrors('howTo')}" th:errors="*{howTo}" class="error-msg"></div>
-		<br>
-		【登録日】<br>
-		<input type="date" th:field="*{postDate}"><br>
-		<div th:if="${#fields.hasErrors('postDate')}" th:errors="*{postDate}" class="error-msg"></div>
-		<br>
-    	<input type="submit" value="登録確認画面へ" class="btn">
-    </form>
+	    <form th:action="@{/favorite}" method="post" style="display:inline;">
+	        <input type="hidden" name="recipeId" th:value="${recipe.recipeId}">
+	        <button type="submit" class="favorite-btn">♥</button>
+	    </form>
+	</h4>
+
+	<table class="confirm-table">
+		
+		<tr>
+			<td class="guide">料理名</td>
+			<td th:text="${recipe.recipeName}"></td>
+		</tr>
+	    <tr>
+	        <td class="guide">キャッチフレーズ</td>
+	        <td th:text="${recipe.catchPhrase}"></td>
+	    </tr>
+	    <tr>
+	        <td class="guide">カテゴリ</td>
+	        <td th:text="${recipe.categoryName}"></td>
+	    </tr>
+		<tr>
+			<td class="guide">作り方</td>
+			<td th:text="${recipe.howTo}"></td>
+		</tr>
+		<tr>
+			<td class="guide">投稿日</td>
+			<td th:text="${recipe.postDate}"></td>
+		</tr>
+	    <tr>
+	        <td class="guide">このレシピを作った方</td>
+	        <td th:text="${recipe.userName}"></td>
+	    </tr>
+	    
+	   
+	</table>
 
 	<br>
-	<a th:href="@{/home}">ホームに戻る</a>
+	<a th:href="@{/home}" class="btn">ホームに戻る</a>
+	<br>
+	<a th:href="@{/recipe-search}" class="btn">レシピ一覧へ</a>
 
 </body>
 </html>

@@ -9,7 +9,7 @@
 	
 	<h2>レシピ削除確認</h2>
 
-	<table class="confirm-table" th:object="${RecipeRegistForm}">
+	<table class="confirm-table" th:object="${removeRecipeForm}">
 		
 		<tr>
 		 	<td class="guide">【ユーザーネーム】</td>
@@ -39,7 +39,7 @@
 	<br>
 	
     <form th:action="@{/confirm-regist-recipe}" method="POST"
-			th:object="${RecipeRegistForm}">
+			th:object="${removeRecipeForm}">
     	<input type="hidden" th:field="*{userName}">
     	<input type="hidden" th:field="*{recipeName}">
     	<input type="hidden" th:field="*{catchPhrase}">
@@ -50,7 +50,7 @@
    	</form>
 
     <form th:action="@{/show-recipe-form-ret}" method="POST"
-			th:object="${RecipeRegistForm}">
+			th:object="${removeRecipeForm}">
     	<input type="hidden" th:field="*{userName}">
     	<input type="hidden" th:field="*{recipeName}">
     	<input type="hidden" th:field="*{catchPhrase}">

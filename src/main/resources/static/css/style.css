@@ -2,18 +2,18 @@
 
 body {
 	font-family: BIZ UDPゴシック;
-	background-color: #98fb98;
+	background-color: rgb(249, 254, 203);
 	text-align: center;
 }
 
 h1 {
 	font-size: 32px;
-    color: green;
+    color: rgb(94, 94, 94);
 }
 
 h2 {
 	font-size: 28px;
-	background-color: green;
+	background-color: rgb(94, 94, 94);
 	color: white;
 	padding-top: 6px;
 	padding-bottom: 6px;
@@ -21,16 +21,16 @@ h2 {
 
 /* 通常のボタン */
 .btn {
-	border: 2px solid green;
+	border: 2px solid rgb(128, 128, 128);
 	padding: 4px 20px;
 	font-size: 20px;
-	color: green;
+	color: rgb(128, 128, 128);
 	cursor:pointer;
 }
 
 .btn:hover {
   color: #fff;
-  background: green;
+  background: rgb(128, 128, 128);
 }
 
 /* コメント入力の幅 */
@@ -39,7 +39,7 @@ input.comment {
 }
 
 .error-msg {
-    color: red;
+    color: rgb(255, 128, 128);
 }
 table {
 	border: 1px solid #5e696c;
@@ -52,7 +52,7 @@ table {
 th {
 	border: 1px solid #5e696c;
     text-align:center;
-    background-color: #3cb371;
+    background-color: rgb(192, 192, 192);/* 表の上のところ */
     height: 32px;
 }
 
@@ -63,20 +63,20 @@ td {
 }
 
 .restaurant-list {
-    background-color: #eee8aa;
+    background-color: rgb(249, 254, 203);
 }
 /* テーブル内ボタン */
 .tbtn {
-	border: 2px solid steelblue;
+	border: 2px solid rgb(128, 128, 0); /* ボタンの枠の色 */
 	padding: 2px 10px;
 	font-size: 16px;
-	color: steelblue;
+	color: rgb(128, 128, 0); /* ボタンの文字 */
 	cursor:pointer;
 }
 
 .tbtn:hover {
   color: #fff;
-  background: steelblue;
+  background: rgb(128, 128, 0);
 }
 
 /* 確認画面用 */
@@ -95,3 +95,17 @@ td {
 .review-list {
     background-color: #afeeee;
 }
+/* お気に入りボタン */
+.favorite-btn {
+    font-size: 22px;
+    color: #888;
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.favorite-btn:hover {
+    color: rgb(255, 128, 128);
+}
+

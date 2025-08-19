@@ -9,8 +9,8 @@
 
 	<h2>レシピ登録</h2>
 
-    <form th:action="@{/show-recipe-form}" method="POST" 
-    		th:object="${RecipeRegistForm}">
+    <form th:action="@{/regist-recipe}" method="post" 
+    		th:object="${registRecipeForm}">
 		
     	【ユーザーネーム】<br>
     	<input type="text" th:field="*{userName}"><br>

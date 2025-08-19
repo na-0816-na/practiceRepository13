@@ -21,30 +21,33 @@
 
 	<table class="recipet-list">
 		<tr>
-<th colspan="2">評価</th><th>料理名</th><th>キャッチフレーズ</th><th>カテゴリ</th>
+<th colspan="2"></th>レビュー</th><th>料理名</th><th>キャッチフレーズ</th><th>カテゴリ</th>
 		</tr>
 
 		<tr th:each="recipe : ${recipeList}">
 			<td>
-				<form th:action="@{/search-recipe}" method="POST">
+				<form th:action="@{search-review}" method="POST">
 					<input type="hidden" name="recipeName" th:value="${recipe.recipeName}">
 					<input type="submit" value="一覧" class="tbtn">
 				</form>
 			</td>
 			<td>
-				<form th:action="@{/show-recipe-form}" method="POST">
-					<input type="hidden" name="recipeNamName" th:value="${recipe.recipeNamName}">
+				<form th:action="@{/show-review-form}" method="POST">
+					<input type="hidden" name="recipeName" th:value="${recipe.recipeName}">
 					<input type="submit" value="登録" class="tbtn">
 				</form>
 			</td>
-			<td th:text="${recipe.restaurantName}"></td>
+			<td>
+			      <a th:href="@{/recipe-detail(recipeId=${recipe.recipeId})}"
+			         th:text="${recipe.recipeName}"></a>
+			 </td>
 			<td th:text="${recipe.catchPhrase}"></td>
-			<td th:text="${recipe.category}"></td>
+			<td th:text="${recipe.categoryName}"></td>
 		</tr>
 
 	</table>
 
 </div>
-
+<a th:href="@{/home}">ホームに戻る</a>
 </body>
 </html>

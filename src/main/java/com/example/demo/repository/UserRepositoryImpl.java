@@ -24,7 +24,7 @@ public class UserRepositoryImpl implements UserRepository {
 				" (e_mail, pass_word, user_name) " +
 				" VALUES (?, ?, ?) ";
 
-			jdbcTemplate.update(sql, user.getEMail(),
+			jdbcTemplate.update(sql, user.getEmail(),
 									 user.getPassWord(),
 									 user.getUserName());
 									 
@@ -42,7 +42,7 @@ public class UserRepositoryImpl implements UserRepository {
 			for (Map<String, Object> one : list) {
 				User user = new User();
 				user.setUserId((Integer) one.get("user_id"));
-				user.setEMail((String) one.get("e_mail"));
+				user.setEmail((String) one.get("e_mail"));
 				user.setPassWord((String) one.get("pass_word"));
 				user.setUserName((String) one.get("user_name"));
 				result.add(user);
@@ -51,15 +51,19 @@ public class UserRepositoryImpl implements UserRepository {
 		        return null;
 	}
 			return result.get(0);
+	}
+
+	@Override
+	public String findUserNameById(Integer userId) {
+		 String sql = "SELECT user_name FROM m_user WHERE user_id = ?";
+		    return jdbcTemplate.queryForObject(sql, String.class, userId);
+	}
+	
+	 @Override
+	    public boolean existsByEmail(String email) {
+	        String sql = "SELECT COUNT(*) FROM m_user WHERE e_mail = ?";
+	        Integer count = jdbcTemplate.queryForObject(sql, Integer.class, email);
+	        return count != null && count > 0;
+	    }
 }
-}
-
-
-
-
-
-
-
-
-
 

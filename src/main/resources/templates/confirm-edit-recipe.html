@@ -8,11 +8,12 @@
 <body>
 	
 	<h2>レシピ更新確認</h2>
-
-	<table class="confirm-table" th:object="${RecipeRegistForm}">
+	
+	<form th:action="@{/confirm-edit-recipe}" method="post" th:object="${registRecipeForm}">
+	<table class="confirm-table">
 		
 		<tr>
-		 	<td class="guide">【ユーザーネーム】</td>
+			<td class="guide">【ユーザーネーム】</td>
 			<td th:text="*{userName}"></td>
 		</tr>
 		<tr>
@@ -25,40 +26,31 @@
 		</tr>
 		<tr>
 			<td class="guide">【カテゴリ】</td>
-			<td th:text="*{category}"></td>			
-			<select th:field="*{category}">
-					<option value="0">選択してください。</option>
-					<option value="1">包丁を使わない料理</option>
-					<option value="2">火を使わない料理</option>
-					<option value="3">冷凍保存可能な料理</option>
-					<option value="4">大量調理OKなもの</option>
-					</select><br>
-			
+			<td th:text="*{categoryName}"></td> 
 		</tr>
 		<tr>
 			<td class="guide">【つくり方】</td>
 			<td th:text="*{howTo}"></td>
 		</tr>
 		<tr>
-			<td class="guide">【更新日】</td>
+			<td class="guide">【登録日】</td>
 			<td th:text="*{postDate}"></td>
 		</tr>
-	</table>
-	<br>
-	
-    <form th:action="@{/confirm-regist-recipe}" method="POST"
-			th:object="${RecipeRegistForm}">
-    	<input type="hidden" th:field="*{userName}">
-    	<input type="hidden" th:field="*{recipeName}">
-    	<input type="hidden" th:field="*{catchPhrase}">
-    	<input type="hidden" th:field="*{category}">
-    	<input type="hidden" th:field="*{howTo}">
+		</table>
+
+			   
+		<input type="hidden" th:field="*{userName}">
+		<input type="hidden" th:field="*{recipeName}">
+		<input type="hidden" th:field="*{catchPhrase}">
+		 <input type="hidden" th:field="*{category}">
+		 <input type="hidden" th:field="*{howTo}">
 		<input type="hidden" th:field="*{postDate}">
-    	<input type="submit" value="更新する" class="btn">
-   	</form>
+
+			    <input type="submit" value="更新する" class="btn">
+			</form>
 
     <form th:action="@{/show-recipe-form-ret}" method="POST"
-			th:object="${RecipeRegistForm}">
+			th:object="${editRecipeForm}">
     	<input type="hidden" th:field="*{userName}">
     	<input type="hidden" th:field="*{recipeName}">
     	<input type="hidden" th:field="*{catchPhrase}">

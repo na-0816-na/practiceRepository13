@@ -9,56 +9,52 @@
 	
 	<h2>レシピ登録確認</h2>
 
-	<table class="confirm-table" th:object="${RecipeRegistForm}">
-		
-		<tr>
-		 	<td class="guide">【ユーザーネーム】</td>
-			<td th:text="*{userName}"></td>
-		</tr>
-		<tr>
-			<td class="guide">【料理名】</td>
-			<td th:text="*{recipeName}"></td>
-		</tr>
-		<tr>
-			<td class="guide">【キャッチフレーズ】</td>
-			<td th:text="*{catchPhrase}"></td>
-		</tr>
-		<tr>
-			<td class="guide">【カテゴリ】</td>
-			<td th:text="*{category}"></td>
-		</tr>
-		<tr>
-			<td class="guide">【つくり方】</td>
-			<td th:text="*{howTo}"></td>
-		</tr>
-		<tr>
-			<td class="guide">【登録日】</td>
-			<td th:text="*{postDate}"></td>
-		</tr>
-	</table>
-	<br>
-	
-    <form th:action="@{/confirm-regist-recipe}" method="POST"
-			th:object="${RecipeRegistForm}">
-    	<input type="hidden" th:field="*{userName}">
-    	<input type="hidden" th:field="*{recipeName}">
-    	<input type="hidden" th:field="*{catchPhrase}">
-    	<input type="hidden" th:field="*{category}">
-    	<input type="hidden" th:field="*{howTo}">
-		<input type="hidden" th:field="*{postDate}">
-    	<input type="submit" value="登録する" class="btn">
-   	</form>
+	<form th:action="@{/confirm-regist-recipe}" method="post" th:object="${registRecipeForm}">
+	    <table class="confirm-table">
+	        <tr>
+	            <td class="guide">【ユーザーネーム】</td>
+	            <td th:text="*{userName}"></td>
+	        </tr>
+	        <tr>
+	            <td class="guide">【料理名】</td>
+	            <td th:text="*{recipeName}"></td>
+	        </tr>
+	        <tr>
+	            <td class="guide">【キャッチフレーズ】</td>
+	            <td th:text="*{catchPhrase}"></td>
+	        </tr>
+	        <tr>
+	            <td class="guide">【カテゴリ】</td>
+	            <td th:text="*{categoryName}"></td> 
+	        </tr>
+	        <tr>
+	            <td class="guide">【つくり方】</td>
+	            <td th:text="*{howTo}"></td>
+	        </tr>
+	        <tr>
+	            <td class="guide">【登録日】</td>
+	            <td th:text="*{postDate}"></td>
+	        </tr>
+	    </table>
 
-    <form th:action="@{/show-recipe-form-ret}" method="POST"
-			th:object="${RecipeRegistForm}">
-    	<input type="hidden" th:field="*{userName}">
-    	<input type="hidden" th:field="*{recipeName}">
-    	<input type="hidden" th:field="*{catchPhrase}">
-    	<input type="hidden" th:field="*{category}">
-    	<input type="hidden" th:field="*{howTo}">
-    	<input type="hidden" th:field="*{postDate}" class="btn">
-    	<input type="submit" value="もどる" class="btn">
-   	</form>
+	   
+	    <input type="hidden" th:field="*{userName}">
+	    <input type="hidden" th:field="*{recipeName}">
+	    <input type="hidden" th:field="*{catchPhrase}">
+	    <input type="hidden" th:field="*{category}">
+	    <input type="hidden" th:field="*{howTo}">
+	    <input type="hidden" th:field="*{postDate}">
 
-</body>
-</html>
+	    <input type="submit" value="登録する" class="btn">
+	</form>
+
+
+	<form th:action="@{/show-recipe-form-ret}" method="post" th:object="${registRecipeForm}">
+	    <input type="hidden" th:field="*{userName}">
+	    <input type="hidden" th:field="*{recipeName}">
+	    <input type="hidden" th:field="*{catchPhrase}">
+	    <input type="hidden" th:field="*{category}">
+	    <input type="hidden" th:field="*{howTo}">
+	    <input type="hidden" th:field="*{postDate}">
+	    <input type="submit" value="もどる" class="btn">
+	</form>

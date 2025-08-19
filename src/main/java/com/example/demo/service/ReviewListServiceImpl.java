@@ -17,7 +17,6 @@ public class ReviewListServiceImpl implements ReviewListService {
 	public List<Review> selectByRecipeId(Integer recipeId) {
 		
 		List<Review> list = repository.selectByRecipeId(recipeId);
-		// TODO 自動生成されたメソッド・スタブ
 		return null;
 	}
 

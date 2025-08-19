@@ -13,5 +13,12 @@ public interface RecipeRepository {
 	void update(Recipe recipe);
 	
 	void delete(Recipe recipe);
-}
+	
+	Recipe findById(Integer recipeId);
+	
+	    
+	 
+	}
+
+
 

@@ -1,6 +1,6 @@
 package com.example.demo.entity;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 import lombok.Data;
 
@@ -11,7 +11,7 @@ public class Review {
 	private Integer reviewId;
 	private Integer recipeId;
 	private Integer userId;
-	private Date postDate;
+	private LocalDate postDate;
 	private Integer deliciousness;
 	private Integer difficulty;
 	private Integer quickly;
