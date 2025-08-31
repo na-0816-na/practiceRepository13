@@ -4,7 +4,8 @@ import java.util.List;
 
 import com.example.demo.entity.Recipe;
 
-public interface RecipeListService {
-	List<Recipe> findByNameWildcard(String recipeName);
+public interface MyRecipeListService {
 	
+	List<Recipe> getMyRecipe(Integer userId);
+
 }

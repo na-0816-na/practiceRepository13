@@ -3,7 +3,6 @@ package com.example.demo.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
@@ -26,7 +25,7 @@ public class EditRecipeController {
 		private final UserService userService;
 	
 	/*--- レシピ編集画面表示リクエスト ---*/
-	@GetMapping("/show-edit-form")
+	@PostMapping("/show-edit-form")
 	public String showEditForm(@ModelAttribute EditRecipeForm form) {
 		return "edit-recipe";
 	}
@@ -62,14 +61,15 @@ public class EditRecipeController {
 		
 String userName = userService.findUserNameById(userId);
 		
-		Recipe r = new Recipe();
-		r.setRecipeName(form.getRecipeName());
-		r.setCatchPhrase(form.getCatchPhrase());
-		r.setHowTo(form.getHowTo());
-		r.setPostDate(form.getPostDate());
-		r.setUserId(userId);
-		r.setUserName(userName); 
-		
+
+	Recipe r = new Recipe();
+	r.setRecipeName(form.getRecipeName());
+	r.setCatchPhrase(form.getCatchPhrase());
+	r.setHowTo(form.getHowTo());
+	r.setCategoryId(form.getCategoryId());
+	r.setPostDate(form.getPostDate());
+	r.setUserId(userId);
+	r.setUserName(userName);		
 		
 		service.edit(r);
 		

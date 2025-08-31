@@ -26,14 +26,14 @@ public class RegistRecipeController {
 	private final UserService userService;
 
 	
-	/*---レシピ登録画面表示リクエスト ---*/
+	/*---レシピ登録画面表示（入力フォーム） ---*/
 	@GetMapping("/show-recipe-form")
 	public String showRecipeForm(@ModelAttribute("registRecipeForm") RegistRecipeForm form) {
 		return "regist-recipe";
 	}
 	
 
-	/*---レシピ登録画面表示リクエスト（確認画面からの戻り） ---*/
+	/*---レシピ登録画面表示（登録確認画面から戻ったとき） ---*/
 	@PostMapping("/show-recipe-form-ret")
 	public String showRecipeFormRet(@ModelAttribute("registRecipeForm") RegistRecipeForm form) {
 		return "regist-recipe";
@@ -50,7 +50,7 @@ public class RegistRecipeController {
 			return "regist-recipe";
 		}
 		
-		switch(form.getCategory()) {
+		switch(form.getCategoryId()) {
 	    case 1: form.setCategoryName("包丁を使わない料理"); break;
 	    case 2: form.setCategoryName("火を使わない料理"); break;
 	    case 3: form.setCategoryName("冷凍保存可能な料理"); break;
@@ -80,13 +80,14 @@ public class RegistRecipeController {
 		r.setRecipeName(form.getRecipeName());
 		r.setCatchPhrase(form.getCatchPhrase());
 		r.setHowTo(form.getHowTo());
-		r.setCategoryName(form.getCategoryName());
+		r.setCategoryId(form.getCategoryId());
 		r.setPostDate(form.getPostDate());
 		r.setUserId(userId);
 		r.setUserName(userName); 
+		r.setDeliciousness(form.getDeliciousness());
+		r.setDifficulty(form.getDifficulty());
+		r.setQuickly(form.getQuickly());
 		
-		
-
 		recipeService.add(r);
 		
 		redirectAttributes.addFlashAttribute("msg", "(レシピを登録しました！)");

@@ -33,19 +33,13 @@
 		</ul>
 		
 		<br>
-		<form th:action="@{/show-edit-form}" method="get">
-		<button type="submit">レシピの編集</button>
-		</form><br>
-		
-		<br>
-		<form th:action="@{/remove-recipe}" method="get">
-		<button type="submit">レシピの削除</button>
-		</form><br>
-		
-		<br>
 		<form th:action="@{/favorite}" method="get">
 		<button type="submit">お気に入りしたレシピ</button>
 		</form><br>
+		
+		<br><form th:action="@{/my-recipe}" method="get">
+				<button type="submit">マイレシピ一覧</button>
+				</form><br>
 		
 		<br>
 		<form th:action="@{/logout}" method="post">

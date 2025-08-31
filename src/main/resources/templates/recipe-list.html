@@ -21,22 +21,11 @@
 
 	<table class="recipet-list">
 		<tr>
-<th colspan="2"></th>レビュー</th><th>料理名</th><th>キャッチフレーズ</th><th>カテゴリ</th>
+<th>料理名</th><th>キャッチフレーズ</th><th>カテゴリ</th>
 		</tr>
-
 		<tr th:each="recipe : ${recipeList}">
-			<td>
-				<form th:action="@{search-review}" method="POST">
-					<input type="hidden" name="recipeName" th:value="${recipe.recipeName}">
-					<input type="submit" value="一覧" class="tbtn">
-				</form>
-			</td>
-			<td>
-				<form th:action="@{/show-review-form}" method="POST">
-					<input type="hidden" name="recipeName" th:value="${recipe.recipeName}">
-					<input type="submit" value="登録" class="tbtn">
-				</form>
-			</td>
+			
+			
 			<td>
 			      <a th:href="@{/recipe-detail(recipeId=${recipe.recipeId})}"
 			         th:text="${recipe.recipeName}"></a>

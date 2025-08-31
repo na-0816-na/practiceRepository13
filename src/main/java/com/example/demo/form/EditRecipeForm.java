@@ -23,6 +23,8 @@ public class EditRecipeForm {
 	private String catchPhrase;
 	
 	private String categoryName;
+	
+	private Integer categoryId;
 
 	@Size(min=1, max=10000, message="1文字から10000文字で指定してください。")
 	private String howTo;
@@ -34,7 +36,7 @@ public class EditRecipeForm {
 	private LocalDate postDate;
 	
 	
-	private Integer category;
+	
 	
 }
 

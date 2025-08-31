@@ -20,6 +20,9 @@ public class Recipe {
 	private String categoryName;
 	private LocalDate postDate;
 	private String userName;
+	private Integer deliciousness;
+	private Integer difficulty;
+	private Integer quickly;
 
  
 }

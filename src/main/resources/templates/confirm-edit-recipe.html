@@ -9,7 +9,7 @@
 	
 	<h2>レシピ更新確認</h2>
 	
-	<form th:action="@{/confirm-edit-recipe}" method="post" th:object="${registRecipeForm}">
+	<form th:action="@{/confirm-edit-recipe}" method="post" th:object="${editRecipeForm}">
 	<table class="confirm-table">
 		
 		<tr>
@@ -29,6 +29,18 @@
 			<td th:text="*{categoryName}"></td> 
 		</tr>
 		<tr>
+			<td class="guide">【レーティング】(美味しさ)</td>
+			<td th:text="*{deliciousness}"></td>
+		</tr>
+		<tr>
+			<td class="guide">【レーティング】(簡単さ)</td>
+			<td th:text="*{difficulty}"></td>
+		</tr>
+		<tr>
+			<td class="guide">【レーティング】(時短)</td>
+			<td th:text="*{quickly}"></td>
+		</tr>
+		<tr>
 			<td class="guide">【つくり方】</td>
 			<td th:text="*{howTo}"></td>
 		</tr>
@@ -38,25 +50,32 @@
 		</tr>
 		</table>
 
-			   
+	
 		<input type="hidden" th:field="*{userName}">
 		<input type="hidden" th:field="*{recipeName}">
 		<input type="hidden" th:field="*{catchPhrase}">
-		 <input type="hidden" th:field="*{category}">
-		 <input type="hidden" th:field="*{howTo}">
+		<input type="hidden" th:field="*{categoryId}">
+		<input type="hidden" th:field="*{deliciousness}">
+		<input type="hidden" th:field="*{difficulty}">
+		<input type="hidden" th:field="*{quickly}">
+		<input type="hidden" th:field="*{howTo}">
 		<input type="hidden" th:field="*{postDate}">
 
-			    <input type="submit" value="更新する" class="btn">
-			</form>
+		<input type="submit" value="更新する" class="btn">
+	</form>
 
     <form th:action="@{/show-recipe-form-ret}" method="POST"
 			th:object="${editRecipeForm}">
-    	<input type="hidden" th:field="*{userName}">
-    	<input type="hidden" th:field="*{recipeName}">
-    	<input type="hidden" th:field="*{catchPhrase}">
-    	<input type="hidden" th:field="*{category}">
-    	<input type="hidden" th:field="*{howTo}">
-    	<input type="hidden" th:field="*{postDate}" class="btn">
+		<input type="hidden" th:field="*{userName}">
+		<input type="hidden" th:field="*{recipeName}">
+		<input type="hidden" th:field="*{catchPhrase}">
+		<input type="hidden" th:field="*{categoryId}">
+		<input type="hidden" th:field="*{deliciousness}">
+		<input type="hidden" th:field="*{difficulty}">
+		<input type="hidden" th:field="*{quickly}">
+		<input type="hidden" th:field="*{howTo}">
+		<input type="hidden" th:field="*{postDate}">
+		
     	<input type="submit" value="もどる" class="btn">
    	</form>
 

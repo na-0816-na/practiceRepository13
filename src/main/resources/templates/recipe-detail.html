@@ -7,14 +7,14 @@
 </head>
 <body>
 
-	<h4>
+	<h3>
 	    <span th:text="${recipe.recipeName}"></span>
 		
-	    <form th:action="@{/favorite}" method="post" style="display:inline;">
+	    <form th:action="@{/favorite/add}" method="post" style="display:inline;">
 	        <input type="hidden" name="recipeId" th:value="${recipe.recipeId}">
-	        <button type="submit" class="favorite-btn">♥</button>
+	        <button type="submit" class="favorite-btn">♥</button>☜お気に入り登録する
 	    </form>
-	</h4>
+	</h3>
 
 	<table class="confirm-table">
 		
@@ -30,6 +30,19 @@
 	        <td class="guide">カテゴリ</td>
 	        <td th:text="${recipe.categoryName}"></td>
 	    </tr>
+		<tr>
+			<td class="guide">【レーティング】(美味しさ)</td>
+			<td th:text="${recipe.deliciousness}"></td>
+		</tr>
+		<tr>
+			<td class="guide">【レーティング】(簡単さ)</td>
+			<td th:text="${recipe.difficulty}"></td>
+		</tr>
+		<tr>
+			<td class="guide">【レーティング】(時短)</td>
+			<td th:text="${recipe.quickly}"></td>
+		</tr>
+		
 		<tr>
 			<td class="guide">作り方</td>
 			<td th:text="${recipe.howTo}"></td>
@@ -49,7 +62,8 @@
 	<br>
 	<a th:href="@{/home}" class="btn">ホームに戻る</a>
 	<br>
+	<br>
+	<br>
 	<a th:href="@{/recipe-search}" class="btn">レシピ一覧へ</a>
-
 </body>
 </html>

@@ -31,33 +31,30 @@ public class LoginController {
 	public String top() {
 		return "top";
 	}
+	/*--- ログイン(画面表示用） ---*/
+	@PostMapping("/login")
+	public String LoginForm(@Validated @ModelAttribute("loginForm") LoginForm form,
+	                        BindingResult result,
+	                        Model model) {
 
-	/*--- ログイン ---*/
-	@GetMapping("/login")
-	public String LoginForm(@Validated @ModelAttribute("loginForm")  LoginForm form,
-			BindingResult result,
-			 Model model) {
-		
-		
-		// 入力エラーがある場合には レビュー登録画面に戻す
-				if (result.hasErrors()) {
-					return "login";
-				}
-				
-				User user = service.findByEmail(form.getEmail());
+	    model.addAttribute("isPost", true); //  ここでフラグをセット
 
-				if (user == null || !user.getPassWord().equals(form.getPassWord())) {
-				    result.reject("loginError", "メールアドレスまたはパスワードが違います");
-				    return "login";
-				}
-				
-		// 正常な場合には ホーム画面へ遷移する
-				model.addAttribute("userId", user.getUserId());
-				 return "redirect:/home";
-			}
+	    if (result.hasErrors()) {
+	        return "login";
+	    }
+
+	    User user = service.findByEmail(form.getEmail());
+	    if (user == null || !user.getPassWord().equals(form.getPassWord())) {
+	        result.reject("loginError", "メールアドレスまたはパスワードが違います");
+	        return "login";
+	    }
+
+	    model.addAttribute("userId", user.getUserId());
+	    return "redirect:/home";
+	}
+
+
 	
-	
-				
 	/*--- 新規ユーザー登録 ---*/
 	@PostMapping("/registration")
 	public String RegistrationForm(@Validated @ModelAttribute("loginForm")  LoginForm form,
@@ -106,7 +103,7 @@ redirectAttributes.addFlashAttribute("redirectPath", "/top");
 
 	
 	//ログアウト確認画面
-		@GetMapping("/logout")
+		@PostMapping("/logout")
 		public String logout() {
 		    return "logout";
 		}

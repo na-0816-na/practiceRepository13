@@ -25,8 +25,21 @@
 		</tr>
 		<tr>
 			<td class="guide">【カテゴリ】</td>
-			<td th:text="*{category}"></td>
+			<td th:text="*{categoryName}"></td>
 		</tr>
+		<tr>
+			<td class="guide">【レーティング】(美味しさ)</td>
+			<td th:text="*{deliciousness}"></td>
+		</tr>
+		<tr>
+			<td class="guide">【レーティング】(簡単さ)</td>
+			<td th:text="*{difficulty}"></td>
+		</tr>
+		<tr>
+			<td class="guide">【レーティング】(時短)</td>
+			<td th:text="*{quickly}"></td>
+		</tr>
+
 		<tr>
 			<td class="guide">【つくり方】</td>
 			<td th:text="*{howTo}"></td>
@@ -38,27 +51,26 @@
 	</table>
 	<br>
 	
-    <form th:action="@{/confirm-regist-recipe}" method="POST"
+    <form th:action="@{/confirm-remove-recipe}" method="POST"
 			th:object="${removeRecipeForm}">
-    	<input type="hidden" th:field="*{userName}">
-    	<input type="hidden" th:field="*{recipeName}">
-    	<input type="hidden" th:field="*{catchPhrase}">
-    	<input type="hidden" th:field="*{category}">
-    	<input type="hidden" th:field="*{howTo}">
+		<input type="hidden" th:field="*{userId}">
+		<input type="hidden" th:field="*{userName}">
+		<input type="hidden" th:field="*{recipeId}">   
+		<input type="hidden" th:field="*{recipeName}">
+		<input type="hidden" th:field="*{catchPhrase}">
+		<input type="hidden" th:field="*{categoryId}">
+		<input type="hidden" th:field="*{deliciousness}">
+		<input type="hidden" th:field="*{difficulty}">
+		<input type="hidden" th:field="*{quickly}">
+		<input type="hidden" th:field="*{howTo}">
 		<input type="hidden" th:field="*{postDate}">
     	<input type="submit" value="削除する" class="btn">
    	</form>
+	<form th:action="@{/my-recipe}" method="GET">
+	    <input type="submit" value="もどる" class="btn">
+	</form>
 
-    <form th:action="@{/show-recipe-form-ret}" method="POST"
-			th:object="${removeRecipeForm}">
-    	<input type="hidden" th:field="*{userName}">
-    	<input type="hidden" th:field="*{recipeName}">
-    	<input type="hidden" th:field="*{catchPhrase}">
-    	<input type="hidden" th:field="*{category}">
-    	<input type="hidden" th:field="*{howTo}">
-    	<input type="hidden" th:field="*{postDate}" class="btn">
-    	<input type="submit" value="もどる" class="btn">
-   	</form>
+    
 
 </body>
 </html>

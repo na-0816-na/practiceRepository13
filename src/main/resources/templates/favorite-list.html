@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>お気に入り一覧</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<h2>お気に入り一覧</h2>
+
+<div th:if="${recipeList != null and !recipeList.isEmpty()}">
+    <table class="recipe-list">
+        <tr><th>料理名</th><th>キャッチフレーズ</th><th>カテゴリ</th></tr>
+		
+        <tr th:each="recipe : ${recipeList}">
+            <td>
+                <a th:href="@{/recipe-detail(recipeId=${recipe.recipeId})}"
+                   th:text="${recipe.recipeName}"></a>
+            </td>
+            <td th:text="${recipe.catchPhrase}"></td>
+            <td th:text="${recipe.categoryName}"></td>
+        </tr>
+    </table>
+</div>
+
+<a th:href="@{/home}">ホームに戻る</a>
+</body>
+</html>

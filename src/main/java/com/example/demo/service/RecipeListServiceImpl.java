@@ -21,8 +21,5 @@ public class RecipeListServiceImpl implements RecipeListService {
 		
 		return list != null ? list : List.of();
 			
-		}
-		
-	
-		
+		}	
 	}

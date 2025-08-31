@@ -1,6 +1,7 @@
 package com.example.demo.form;
 
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 import lombok.Data;
@@ -14,12 +15,8 @@ public class LoginForm {
 	@Size(min=6, max=16, message="6文字から20文字で指定してください。")
 	private String passWord;
 	
-	@NotNull(message="入力してください。")
-	
+	@NotBlank(message = "メールアドレスを入力してください")
+	@Email(message = "正しい形式のメールアドレスを入力してください")
 	private String email;
-	
-	
-		
-	
-
 }
+

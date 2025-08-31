@@ -25,15 +25,52 @@
 		<div th:if="${#fields.hasErrors('catchPhrase')}" th:errors="*{catchPhrase}" class="error-msg"></div>
 		<br>
     	【カテゴリ】<br>
-    	<select th:field="*{category}">
+    	<select th:field="*{categoryId}">
 		<option value="0">選択してください。</option>
 		<option value="1">包丁を使わない料理</option>
 		<option value="2">火を使わない料理</option>
 		<option value="3">冷凍保存可能な料理</option>
 		<option value="4">大量調理OKなもの</option>
 		</select><br>
-    	<div th:if="${#fields.hasErrors('category')}" th:errors="*{category}" class="error-msg"></div>
+    	<div th:if="${#fields.hasErrors('categoryId')}" th:errors="*{categoryId}" class="error-msg"></div>
 		<br>
+		【レーティング】<br>
+		（数字が大きいほどその度合いが高い）<br><br>
+		〇美味しさ：
+		<select th:field="*{deliciousness}">
+							<option value="0">選択してください。</option>
+							<!-- 固定のオプション1-5 -->
+							<option th:each="option : ${#numbers.sequence(1,5)}" 
+								th:value="${option}"
+								th:text="${option}"
+								th:selected="${option == deliciousness}" >
+							</option>
+						</select><br>
+				    	<div th:if="${#fields.hasErrors('deliciousness')}" th:errors="*{deliciousness}" class="error-msg"></div>
+						<br>
+		〇簡単さ：
+		<select th:field="*{difficulty}">
+							<option value="0">選択してください。</option>
+							<!-- 固定のオプション1-5 -->
+							<option th:each="option : ${#numbers.sequence(1,5)}" 
+								th:value="${option}"
+								th:text="${option}"
+								th:selected="${option == difficulty}" >
+							</option>
+						</select><br>
+						<div th:if="${#fields.hasErrors('difficulty')}" th:errors="*{difficulty}" class="error-msg"></div>
+						<br>		
+		〇時短：
+		<select th:field="*{quickly}">
+							<option value="0">選択してください。</option>
+							<!-- 固定のオプション1-5 -->
+							<option th:each="option : ${#numbers.sequence(1,5)}" 
+								th:value="${option}"
+								th:text="${option}"
+								th:selected="${option == quickly}" >
+							</option>
+						</select><br>
+		
     	【つくり方】<br>
     	<input type="text" th:field="*{howTo}" class="howTo" ><br>
     	<div th:if="${#fields.hasErrors('howTo')}" th:errors="*{howTo}" class="error-msg"></div>

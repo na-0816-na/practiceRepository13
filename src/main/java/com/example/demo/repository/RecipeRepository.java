@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.example.demo.entity.Recipe;
 
+
 public interface RecipeRepository {
 
 	void add(Recipe recipe);
@@ -15,6 +16,10 @@ public interface RecipeRepository {
 	void delete(Recipe recipe);
 	
 	Recipe findById(Integer recipeId);
+	
+	List<Recipe> findByUserId(Integer userId);
+	
+
 	
 	    
 	 
