@@ -9,12 +9,11 @@
 
 	<h2>レシピの編集</h2>
 
-    <form th:action="@{/show-edit-form}" method="GET" 
+    <form th:action="@{/edit-recipe}" method="POST" 
     		th:object="${editRecipeForm}">
 		
     	【ユーザーネーム】<br>
-    	<input type="text" th:field="*{userName}"><br>
-    	<div th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" class="error-msg"></div>
+		<p th:text="*{userName}"></p>
 		<input type="hidden" th:field="*{userName}">
 		<br>
 		【料理名】<br>
@@ -35,6 +34,43 @@
 		</select><br>
     	<div th:if="${#fields.hasErrors('categoryId')}" th:errors="*{categoryId}" class="error-msg"></div>
 		<br>
+		<br>
+		【レーティング】<br>
+		(数字が大きいほどその度合いが高い）<br><br>
+		〇美味しさ：
+			<select th:field="*{deliciousness}">
+			<option value="0">選択してください。</option>
+			<!-- 固定のオプション1-5 -->
+			<option th:each="option : ${#numbers.sequence(1,5)}" 
+					th:value="${option}"
+					th:text="${option}"
+					th:selected="${option == deliciousness}" >
+			</option>
+			</select><br>
+			<div th:if="${#fields.hasErrors('deliciousness')}" th:errors="*{deliciousness}" class="error-msg"></div>
+			<br>
+		〇簡単さ：
+			<select th:field="*{difficulty}">
+			<option value="0">選択してください。</option>
+			<!-- 固定のオプション1-5 -->
+			<option th:each="option : ${#numbers.sequence(1,5)}" 
+					th:value="${option}"
+					th:text="${option}"
+					th:selected="${option == difficulty}" >
+			</option>
+			</select><br>
+			<div th:if="${#fields.hasErrors('difficulty')}" th:errors="*{difficulty}" class="error-msg"></div>
+			<br>		
+		〇時短：
+			<select th:field="*{quickly}">
+			<option value="0">選択してください。</option>
+			<!-- 固定のオプション1-5 -->
+			<option th:each="option : ${#numbers.sequence(1,5)}" 
+					th:value="${option}"
+					th:text="${option}"
+					th:selected="${option == quickly}" >
+			</option>
+			</select><br><br>
     	【つくり方】<br>
     	<input type="text" th:field="*{howTo}" class="howTo" ><br>
     	<div th:if="${#fields.hasErrors('howTo')}" th:errors="*{howTo}" class="error-msg"></div>

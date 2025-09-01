@@ -105,7 +105,23 @@ td {
     margin-left: 10px;
 }
 
-.favorite-btn:hover {
-    color: rgb(255, 128, 128);
+/* 共通のハートボタン */
+.favorite-btn {
+    font-size: 22px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin-left: 10px;
 }
+
+/* 未登録（灰色） */
+.favorite-btn.gray {
+    color: #888;
+}
+
+/* 登録済み（赤色） */
+.favorite-btn.red {
+    color: rgb(255, 0, 0);
+}
+
 

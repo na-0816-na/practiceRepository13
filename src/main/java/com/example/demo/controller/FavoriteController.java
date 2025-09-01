@@ -33,8 +33,9 @@ public class FavoriteController {
     
     //お気に入り削除 
     @PostMapping("/favorite/remove")
-    public String removeFavorite(@ModelAttribute FavoriteForm form) {
-        favoriteService.removeFavorite(form.getUserId(), form.getRecipeId());
+    public String removeFavorite(@SessionAttribute("userId") Integer userId,
+                                 @ModelAttribute FavoriteForm form) {
+        favoriteService.removeFavorite(userId, form.getRecipeId());
         return "redirect:/recipe-detail?recipeId=" + form.getRecipeId();
     }
 

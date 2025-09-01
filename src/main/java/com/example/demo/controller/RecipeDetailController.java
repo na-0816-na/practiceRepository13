@@ -4,9 +4,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.example.demo.entity.Recipe;
 import com.example.demo.form.RegistRecipeForm;
+import com.example.demo.service.FavoriteService;
 import com.example.demo.service.RecipeDetailService;
 
 import lombok.RequiredArgsConstructor;
@@ -15,30 +17,25 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class RecipeDetailController {
 	
-	private final RecipeDetailService recipeDetailService;
-	
-	@GetMapping("/recipe-detail")
-	public String recipeDetail(@ModelAttribute RegistRecipeForm form, Model model) {
-	    // フォームのrecipeIdから検索
-	    Integer recipeId = form.getRecipeId();
+    private final RecipeDetailService recipeDetailService;
+    private final FavoriteService favoriteService;  
 
-	    // DBから1件取得
-	    Recipe recipe = recipeDetailService.findByRecipeId(recipeId);
+    @GetMapping("/recipe-detail")
+    public String recipeDetail(@ModelAttribute RegistRecipeForm form,
+                               @SessionAttribute("userId") Integer userId,
+                               Model model) {
+        Integer recipeId = form.getRecipeId();
 
-	    // 取得したレシピをフォームに詰め直す
-	    form.setRecipeName(recipe.getRecipeName());
-	    form.setCatchPhrase(recipe.getCatchPhrase());
-	    form.setCategoryId(recipe.getCategoryId());
-	    form.setHowTo(recipe.getHowTo());
-	    form.setUserId(recipe.getUserId());
-	    form.setPostDate(recipe.getPostDate());
-	    form.setDeliciousness(recipe.getDeliciousness());
-	    form.setDifficulty(recipe.getDifficulty());
-	    form.setQuickly(recipe.getQuickly());      
-	    
+        // レシピを取得
+        Recipe recipe = recipeDetailService.findByRecipeId(recipeId);
 
-	    model.addAttribute("recipe", recipe);
-	    return "recipe-detail";  // 
-	}
+        // お気に入り状態を取得
+        boolean isFavorite = favoriteService.isFavorite(userId, recipeId);
 
+        // モデルに渡す
+        model.addAttribute("recipe", recipe);
+        model.addAttribute("isFavorite", isFavorite);
+
+        return "recipe-detail";
+    }
 }

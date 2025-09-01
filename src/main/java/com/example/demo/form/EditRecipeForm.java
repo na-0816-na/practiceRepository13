@@ -2,6 +2,8 @@ package com.example.demo.form;
 
 import java.time.LocalDate;
 
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
@@ -19,6 +21,8 @@ public class EditRecipeForm {
 	@Size(min=1, max=64, message="1文字から64文字で指定してください。")
 	private String recipeName;
 	
+	private Integer recipeId;
+	
 	@Size(min=1, max=64, message="1文字から64文字で指定してください。")
 	private String catchPhrase;
 	
@@ -34,6 +38,21 @@ public class EditRecipeForm {
 	@NotNull(message="日付を入力してください。")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate postDate;
+	
+	@NotNull(message="入力してください。")
+	@Min(value=1, message="1-5で指定してください。")
+	@Max(value=5, message="1-5で指定してください。")
+	private Integer deliciousness;
+	
+	@NotNull(message="入力してください。")
+	@Min(value=1, message="1-5で指定してください。")
+	@Max(value=5, message="1-5で指定してください。")
+	private Integer difficulty;
+	
+	@NotNull(message="入力してください。")
+	@Min(value=1, message="1-5で指定してください。")
+	@Max(value=5, message="1-5で指定してください。")
+	private Integer quickly;
 	
 	
 	

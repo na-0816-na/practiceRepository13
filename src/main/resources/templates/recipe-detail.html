@@ -6,64 +6,66 @@
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-
 	<h3>
 	    <span th:text="${recipe.recipeName}"></span>
-		
-	    <form th:action="@{/favorite/add}" method="post" style="display:inline;">
+	    
+	    <!-- お気に入り登録していない場合 -->
+	    <form th:if="${!isFavorite}" th:action="@{/favorite/add}" method="post" style="display:inline;">
 	        <input type="hidden" name="recipeId" th:value="${recipe.recipeId}">
-	        <button type="submit" class="favorite-btn">♥</button>☜お気に入り登録する
+	        <button type="submit" class="favorite-btn gray">♥</button>
+	        <span>☜お気に入り登録</span>
+	    </form>
+
+	    <!-- お気に入り登録済みの場合 -->
+	    <form th:if="${isFavorite}" th:action="@{/favorite/remove}" method="post" style="display:inline;">
+	        <input type="hidden" name="recipeId" th:value="${recipe.recipeId}">
+	        <button type="submit" class="favorite-btn red">♥</button>
+	        <span>☜登録解除</span>
 	    </form>
 	</h3>
 
-	<table class="confirm-table">
-		
-		<tr>
-			<td class="guide">料理名</td>
-			<td th:text="${recipe.recipeName}"></td>
-		</tr>
-	    <tr>
-	        <td class="guide">キャッチフレーズ</td>
-	        <td th:text="${recipe.catchPhrase}"></td>
-	    </tr>
-	    <tr>
-	        <td class="guide">カテゴリ</td>
-	        <td th:text="${recipe.categoryName}"></td>
-	    </tr>
-		<tr>
-			<td class="guide">【レーティング】(美味しさ)</td>
-			<td th:text="${recipe.deliciousness}"></td>
-		</tr>
-		<tr>
-			<td class="guide">【レーティング】(簡単さ)</td>
-			<td th:text="${recipe.difficulty}"></td>
-		</tr>
-		<tr>
-			<td class="guide">【レーティング】(時短)</td>
-			<td th:text="${recipe.quickly}"></td>
-		</tr>
-		
-		<tr>
-			<td class="guide">作り方</td>
-			<td th:text="${recipe.howTo}"></td>
-		</tr>
-		<tr>
-			<td class="guide">投稿日</td>
-			<td th:text="${recipe.postDate}"></td>
-		</tr>
-	    <tr>
-	        <td class="guide">このレシピを作った方</td>
-	        <td th:text="${recipe.userName}"></td>
-	    </tr>
-	    
-	   
-	</table>
+    <table class="confirm-table">
+        <tr>
+            <td class="guide">料理名</td>
+            <td th:text="${recipe.recipeName}"></td>
+        </tr>
+        <tr>
+            <td class="guide">キャッチフレーズ</td>
+            <td th:text="${recipe.catchPhrase}"></td>
+        </tr>
+        <tr>
+            <td class="guide">カテゴリ</td>
+            <td th:text="${recipe.categoryName}"></td>
+        </tr>
+        <tr>
+            <td class="guide">【レーティング】(美味しさ)</td>
+            <td th:text="${recipe.deliciousness}"></td>
+        </tr>
+        <tr>
+            <td class="guide">【レーティング】(簡単さ)</td>
+            <td th:text="${recipe.difficulty}"></td>
+        </tr>
+        <tr>
+            <td class="guide">【レーティング】(時短)</td>
+            <td th:text="${recipe.quickly}"></td>
+        </tr>
+        <tr>
+            <td class="guide">作り方</td>
+            <td th:text="${recipe.howTo}"></td>
+        </tr>
+        <tr>
+            <td class="guide">投稿日</td>
+            <td th:text="${recipe.postDate}"></td>
+        </tr>
+        <tr>
+            <td class="guide">このレシピを作った方</td>
+            <td th:text="${recipe.userName}"></td>
+        </tr>
+    </table>
 
-	<br>
-	<a th:href="@{/home}" class="btn">ホームに戻る</a>
-	<br>
-	<br>
-	<br>
-	<a th:href="@{/recipe-search}" class="btn">レシピ一覧へ</a>
+    <br>
+    <a th:href="@{/home}" class="btn">ホームに戻る</a>
+    <br><br><br>
+    <a th:href="@{/recipe-search}" class="btn">レシピ一覧へ</a>
 </body>
 </html>

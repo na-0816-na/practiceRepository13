@@ -37,7 +37,7 @@ public class LoginController {
 	                        BindingResult result,
 	                        Model model) {
 
-	    model.addAttribute("isPost", true); //  ここでフラグをセット
+	    model.addAttribute("isPost", true);
 
 	    if (result.hasErrors()) {
 	        return "login";

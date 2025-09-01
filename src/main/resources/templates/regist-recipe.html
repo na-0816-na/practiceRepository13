@@ -11,10 +11,11 @@
 
     <form th:action="@{/regist-recipe}" method="post" 
     		th:object="${registRecipeForm}">
+			
 		
     	【ユーザーネーム】<br>
-    	<input type="text" th:field="*{userName}"><br>
-    	<div th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" class="error-msg"></div>
+		<p th:text="*{userName}"></p>
+		<input type="hidden" th:field="*{userName}">
 		<br>
 		【料理名】<br>
 		<input type="text" th:field="*{recipeName}" class="recipeName" ><br>

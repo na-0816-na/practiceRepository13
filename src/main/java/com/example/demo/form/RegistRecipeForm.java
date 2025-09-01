@@ -37,7 +37,7 @@ public class RegistRecipeForm {
 	private String howTo;
 
 	
-	@Past(message="過去の日付を入力してください。")
+	@Past(message="今日以前の日付を入力してください。")
 	@NotNull(message="日付を入力してください。")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate postDate;

@@ -28,14 +28,32 @@ public class RegistRecipeController {
 	
 	/*---レシピ登録画面表示（入力フォーム） ---*/
 	@GetMapping("/show-recipe-form")
-	public String showRecipeForm(@ModelAttribute("registRecipeForm") RegistRecipeForm form) {
+	public String showRecipeForm(
+	        @ModelAttribute("registRecipeForm") RegistRecipeForm form,
+	        @SessionAttribute("userId") Integer userId) {
+
+	    // userId から userName を取得
+	    String userName = userService.findUserNameById(userId);
+
+	    // フォームにセットして画面に渡す
+	    form.setUserName(userName);
+
 		return "regist-recipe";
 	}
 	
 
 	/*---レシピ登録画面表示（登録確認画面から戻ったとき） ---*/
 	@PostMapping("/show-recipe-form-ret")
-	public String showRecipeFormRet(@ModelAttribute("registRecipeForm") RegistRecipeForm form) {
+	public String showRecipeFormRet(@ModelAttribute("registRecipeForm") RegistRecipeForm form,
+									@SessionAttribute("userId") Integer userId) {
+
+	    // userId から userName を取得
+	    String userName = userService.findUserNameById(userId);
+
+	    // フォームにセットして画面に渡す
+	    form.setUserName(userName);
+
+			
 		return "regist-recipe";
 	}
 
