@@ -32,7 +32,7 @@ public class LoginController {
 		return "top";
 	}
 	/*--- ログイン(画面表示用） ---*/
-	@PostMapping("/login")
+	@GetMapping("/login")
 	public String LoginForm(@Validated @ModelAttribute("loginForm") LoginForm form,
 	                        BindingResult result,
 	                        Model model) {
