@@ -105,6 +105,9 @@ public class RecipeRepositoryImpl implements RecipeRepository {
 
 	@Override
 	public void update(Recipe recipe) {
+		System.out.println("UPDATE 実行: id=" + recipe.getRecipeId());
+
+		
 		
 		String sql =
 				" UPDATE             " + 
@@ -118,7 +121,7 @@ public class RecipeRepositoryImpl implements RecipeRepository {
 				"    post_date = ? ,              " + 
 				"    deliciousness = ? ,              " + 
 				"    difficulty = ? ,              " + 
-				"    quickly = ? ,              " + 
+				"    quickly = ?               " + 
 				" WHERE              " + 
 				"   recipe_id = ?    ";
 		
@@ -129,10 +132,10 @@ public class RecipeRepositoryImpl implements RecipeRepository {
 				recipe.getCategoryId(),
 				recipe.getHowTo(),
 				recipe.getPostDate(),
-				recipe.getRecipeId(),
 				recipe.getDeliciousness(),
 				recipe.getDifficulty(),
-				recipe.getQuickly());
+				recipe.getQuickly(),
+				recipe.getRecipeId());
 				
 		
 	}
@@ -155,13 +158,14 @@ public class RecipeRepositoryImpl implements RecipeRepository {
 	
 	@Override
 	public Recipe findById(Integer recipeId) {
-	    String sql =
-	        " SELECT mr.user_id, mr.recipe_id, mr.recipe_name, mr.catch_phrase, mr.how_to, mr.post_date, " +
-	        "        mc.category_name, mu.user_name, mr.deliciousness, mr.difficulty, mr.quickly " +
-	        " FROM m_recipe mr " +
-	        " JOIN m_category mc ON mr.category_id = mc.category_id " +
-	        " JOIN m_user mu ON mr.user_id = mu.user_id " +
-	        " WHERE mr.recipe_id = ?";
+		String sql =
+			    " SELECT mr.user_id, mr.recipe_id, mr.recipe_name, mr.catch_phrase, mr.how_to, mr.post_date, " +
+			    "        mr.category_id, mc.category_name, mu.user_name, " +
+			    "        mr.deliciousness, mr.difficulty, mr.quickly " +
+			    " FROM m_recipe mr " +
+			    " JOIN m_category mc ON mr.category_id = mc.category_id " +
+			    " JOIN m_user mu ON mr.user_id = mu.user_id " +
+			    " WHERE mr.recipe_id = ?";
 
 	    List<Map<String, Object>> list = jdbcTemplate.queryForList(sql, recipeId);
 
@@ -177,6 +181,7 @@ public class RecipeRepositoryImpl implements RecipeRepository {
 	    recipe.setRecipeName((String) one.get("recipe_name"));
 	    recipe.setCatchPhrase((String) one.get("catch_phrase"));
 	    recipe.setHowTo((String) one.get("how_to"));
+	    recipe.setCategoryId((Integer) one.get("category_id"));
 	    recipe.setCategoryName((String) one.get("category_name"));
 	    recipe.setUserName((String) one.get("user_name"));
 	    recipe.setDeliciousness((Integer) one.get("deliciousness"));

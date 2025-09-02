@@ -1,10 +1,15 @@
 package com.example.demo.controller;
 
+
+
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -26,13 +31,27 @@ public class EditRecipeController {
 	
 	/*--- レシピ編集画面表示リクエスト ---*/
 	@PostMapping("/show-edit-form")
-	public String showEditForm(@ModelAttribute EditRecipeForm form, 
-		                       @SessionAttribute("userId") Integer userId) {
+	public String showEditForm(@RequestParam("recipeId") Integer recipeId,
+								@SessionAttribute("userId") Integer userId,Model model) {
 		
-		System.out.println("DEBUG: form = " + form);
+		// DB から再取得
+	    Recipe recipe = service.findById(recipeId);
 
-		   
-	form.setUserName(userService.findUserNameById(userId));
+	    // フォームに詰め替え
+	    EditRecipeForm f = new EditRecipeForm();
+	    f.setRecipeId(recipe.getRecipeId());
+	    f.setRecipeName(recipe.getRecipeName());
+	    f.setCatchPhrase(recipe.getCatchPhrase());
+	    f.setCategoryId(recipe.getCategoryId());
+	    f.setHowTo(recipe.getHowTo());
+	    f.setPostDate(recipe.getPostDate());
+	    f.setDeliciousness(recipe.getDeliciousness());
+	    f.setDifficulty(recipe.getDifficulty());
+	    f.setQuickly(recipe.getQuickly());
+	    f.setUserName(userService.findUserNameById(userId));
+
+	    //モデルにセット
+	    model.addAttribute("editRecipeForm", f);
 
 		return "edit-recipe";
 	}
@@ -41,7 +60,7 @@ public class EditRecipeController {
 	/*--- レシピ更新リクエスト（登録画面より） ---*/
 	@PostMapping("/edit-recipe")
 	public String editRecipe(
-			@Validated @ModelAttribute EditRecipeForm form,
+			@Validated @ModelAttribute("editRecipeForm") EditRecipeForm form,
 			BindingResult result) {
 		
 		switch(form.getCategoryId()) {
@@ -53,11 +72,12 @@ public class EditRecipeController {
 
 		// 入力エラーがある場合には レシピ登録画面に戻す
 		if (result.hasErrors()) {
-			return "confirm-edit-recipe";
+			 return "edit-recipe";
+			 
 		}
 		
 		// 正常な場合に レシピ登録確認画面に 遷移する
-		return "confirm-regist-recipe";
+		return "confirm-edit-recipe";
 	}
 	
 	/*--- レシピ更新リクエスト（登録確認画面より） ---*/
@@ -67,6 +87,8 @@ public class EditRecipeController {
 			BindingResult result,
 			 @SessionAttribute("userId") Integer userId,
 			RedirectAttributes redirectAttributes) {
+		
+		System.out.println("recipeId=" + form.getRecipeId());
 
 		// 入力エラーがある場合には レビュー登録画面に戻す
 		if (result.hasErrors()) {

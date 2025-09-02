@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -36,8 +36,7 @@ public class RegistRecipeForm {
 	@Size(min=1, max=10000, message="1文字から10000文字で指定してください。")
 	private String howTo;
 
-	
-	@Past(message="今日以前の日付を入力してください。")
+	@PastOrPresent(message="今日以前の日付を入力してください。")
 	@NotNull(message="日付を入力してください。")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate postDate;

@@ -18,4 +18,10 @@ public class EditServiceImpl implements EditService {
 			repository.update(recipe);
 	}
 
+		@Override
+		public Recipe findById(Integer recipeId) {
+		
+			return repository.findById(recipeId);
+		}
+
 }

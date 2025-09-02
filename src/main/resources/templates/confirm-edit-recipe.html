@@ -49,10 +49,12 @@
 			<td th:text="*{postDate}"></td>
 		</tr>
 		</table>
+		<br>
 
 	
 		<input type="hidden" th:field="*{userName}">
 		<input type="hidden" th:field="*{recipeName}">
+		<input type="hidden" th:field="*{recipeId}">
 		<input type="hidden" th:field="*{catchPhrase}">
 		<input type="hidden" th:field="*{categoryId}">
 		<input type="hidden" th:field="*{deliciousness}">
@@ -61,13 +63,14 @@
 		<input type="hidden" th:field="*{howTo}">
 		<input type="hidden" th:field="*{postDate}">
 
-		<input type="submit" value="更新する" class="btn">
+		<input type="submit" value="更新" class="btn">
 	</form>
 
     <form th:action="@{/show-recipe-form-ret}" method="POST"
 			th:object="${editRecipeForm}">
 		<input type="hidden" th:field="*{userName}">
 		<input type="hidden" th:field="*{recipeName}">
+		<input type="hidden" th:field="*{recipeId}">
 		<input type="hidden" th:field="*{catchPhrase}">
 		<input type="hidden" th:field="*{categoryId}">
 		<input type="hidden" th:field="*{deliciousness}">
@@ -75,7 +78,7 @@
 		<input type="hidden" th:field="*{quickly}">
 		<input type="hidden" th:field="*{howTo}">
 		<input type="hidden" th:field="*{postDate}">
-		
+		<br>
     	<input type="submit" value="もどる" class="btn">
    	</form>
 

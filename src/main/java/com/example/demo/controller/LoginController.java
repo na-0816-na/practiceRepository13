@@ -33,6 +33,14 @@ public class LoginController {
 	}
 	/*--- ログイン(画面表示用） ---*/
 	@GetMapping("/login")
+	public String showLoginForm(Model model) {
+	    // 空のフォームを初期化して model に渡す
+	    model.addAttribute("loginForm", new LoginForm());
+	    return "login"; 
+	}
+
+	
+	@PostMapping("/login")
 	public String LoginForm(@Validated @ModelAttribute("loginForm") LoginForm form,
 	                        BindingResult result,
 	                        Model model) {
@@ -56,6 +64,13 @@ public class LoginController {
 
 	
 	/*--- 新規ユーザー登録 ---*/
+	@GetMapping("/registration")
+	public String showRegistrationForm(Model model) {
+	    // 空のフォームを初期化して model に渡す
+	    model.addAttribute("loginForm", new LoginForm());
+	    return "new-regist"; 
+	}
+	
 	@PostMapping("/registration")
 	public String RegistrationForm(@Validated @ModelAttribute("loginForm")  LoginForm form,
 			BindingResult result,RedirectAttributes redirectAttributes,
