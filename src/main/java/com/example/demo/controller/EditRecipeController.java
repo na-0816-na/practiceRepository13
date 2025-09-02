@@ -88,7 +88,6 @@ public class EditRecipeController {
 			 @SessionAttribute("userId") Integer userId,
 			RedirectAttributes redirectAttributes) {
 		
-		System.out.println("recipeId=" + form.getRecipeId());
 
 		// 入力エラーがある場合には レビュー登録画面に戻す
 		if (result.hasErrors()) {
