@@ -25,6 +25,12 @@ import lombok.RequiredArgsConstructor;
 public class LoginController {
 
 	private final UserService service;
+	
+	/*--- ルートアクセス時 ---*/
+    @GetMapping("/")
+    public String root() {
+        return "redirect:/top";
+    }
 
 	/*--- トップ ---*/
 	@GetMapping("/top")
