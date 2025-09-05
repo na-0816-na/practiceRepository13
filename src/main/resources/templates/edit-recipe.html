@@ -13,19 +13,23 @@
     		th:object="${editRecipeForm}">
 		
     	【ユーザーネーム】<br>
+		
 		<p th:text="*{userName}"></p>
 		<input type="hidden" th:field="*{userName}">
 		<input type="hidden" th:field="*{recipeId}">
 		<br>
 		【料理名】<br>
+		
 		<input type="text" th:field="*{recipeName}" class="recipeName" ><br>
 		<div th:if="${#fields.hasErrors('recipeName')}" th:errors="*{recipeName}" class="error-msg"></div>
 		<br>
 		【キャッチフレーズ】<br>
+		
 		<input type="text" th:field="*{catchPhrase}"><br>
 		<div th:if="${#fields.hasErrors('catchPhrase')}" th:errors="*{catchPhrase}" class="error-msg"></div>
 		<br>
     	【カテゴリ】(1-5)<br>
+		
     	<select th:field="*{categoryId}">
 		<option value="0">選択してください。</option>
 		<option value="1">包丁を使わない料理</option>
@@ -71,7 +75,10 @@
 					th:text="${option}"
 					th:selected="${option == quickly}" >
 			</option>
-			</select><br><br>
+			</select><br>
+			<div th:if="${#fields.hasErrors('quickly')}" th:errors="*{quickly}" class="error-msg"></div>
+			<br><br>
+					
     	【つくり方】<br>
     	<input type="text" th:field="*{howTo}" class="howTo" ><br>
     	<div th:if="${#fields.hasErrors('howTo')}" th:errors="*{howTo}" class="error-msg"></div>
@@ -79,6 +86,7 @@
 		【更新日】<br>
 		<input type="date" th:field="*{postDate}"><br>
 		<div th:if="${#fields.hasErrors('postDate')}" th:errors="*{postDate}" class="error-msg"></div>
+		<div th:if="${#fields.hasErrors('postDateAfter1970')}" th:errors="*{postDateAfter1970}" class="error-msg"></div>
 		<br>
     	<input type="submit" value="確認画面へ" class="btn">
     </form>

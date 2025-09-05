@@ -124,7 +124,7 @@ redirectAttributes.addFlashAttribute("redirectPath", "/top");
 
 	
 	//ログアウト確認画面
-		@PostMapping("/logout")
+		@GetMapping("/logout")
 		public String logout() {
 		    return "logout";
 		}

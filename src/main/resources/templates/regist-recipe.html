@@ -54,23 +54,25 @@
 							<option value="0">選択してください。</option>
 							<!-- 固定のオプション1-5 -->
 							<option th:each="option : ${#numbers.sequence(1,5)}" 
-								th:value="${option}"
-								th:text="${option}"
-								th:selected="${option == difficulty}" >
+									th:value="${option}"
+									th:text="${option}"
+									th:selected="${option == difficulty}" >
 							</option>
-						</select><br>
-						<div th:if="${#fields.hasErrors('difficulty')}" th:errors="*{difficulty}" class="error-msg"></div>
-						<br>		
+							</select><br>
+							<div th:if="${#fields.hasErrors('difficulty')}" th:errors="*{difficulty}" class="error-msg"></div>
+							<br>	
 		〇時短：
 		<select th:field="*{quickly}">
 							<option value="0">選択してください。</option>
 							<!-- 固定のオプション1-5 -->
 							<option th:each="option : ${#numbers.sequence(1,5)}" 
-								th:value="${option}"
-								th:text="${option}"
-								th:selected="${option == quickly}" >
+											th:value="${option}"
+											th:text="${option}"
+											th:selected="${option == quickly}" >
 							</option>
-						</select><br>
+							</select><br>
+							<div th:if="${#fields.hasErrors('quickly')}" th:errors="*{quickly}" class="error-msg"></div>
+							<br>								
 		
     	【つくり方】<br>
     	<input type="text" th:field="*{howTo}" class="howTo" ><br>
@@ -79,6 +81,7 @@
 		【登録日】<br>
 		<input type="date" th:field="*{postDate}"><br>
 		<div th:if="${#fields.hasErrors('postDate')}" th:errors="*{postDate}" class="error-msg"></div>
+		<div th:if="${#fields.hasErrors('postDateAfter1970')}" th:errors="*{postDateAfter1970}" class="error-msg"></div>
 		<br>
     	<input type="submit" value="登録確認画面へ" class="btn">
     </form>

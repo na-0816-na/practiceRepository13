@@ -81,7 +81,7 @@ td {
 
 /* 確認画面用 */
 .confirm-table {
-    background-color: #e5d8e8;
+    background-color: rgb(217, 217, 217);
 	width: 50%; 					/* テーブル横幅 */
 }
 
@@ -123,5 +123,9 @@ td {
 .favorite-btn.red {
     color: rgb(255, 0, 0);
 }
-
+ul {
+    list-style-type: none; /* 黒丸を消す */
+    padding-left: 0;       /* 左の余白も消す */
+    margin-left: 0;        /* 必要なら左のマージンも消す */
+}
 

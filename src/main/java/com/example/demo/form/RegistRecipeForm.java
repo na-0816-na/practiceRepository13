@@ -2,6 +2,7 @@ package com.example.demo.form;
 
 import java.time.LocalDate;
 
+import jakarta.validation.constraints.AssertTrue;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
@@ -11,6 +12,7 @@ import jakarta.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Data;
+
 
 @Data
 public class RegistRecipeForm {
@@ -30,7 +32,8 @@ public class RegistRecipeForm {
 	
 	private String categoryName;
 	
-	@NotNull(message="入力してください。")
+	@NotNull(message = "カテゴリを選択してください。")
+	@Min(value = 1, message = "カテゴリを選択してください。")
 	private Integer categoryId;
 
 	@Size(min=1, max=10000, message="1文字から10000文字で指定してください。")
@@ -40,6 +43,12 @@ public class RegistRecipeForm {
 	@NotNull(message="日付を入力してください。")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate postDate;
+	
+	// 1970年1月1日より前をはじくバリデーション
+	@AssertTrue(message = "1970年1月1日以降の日付を入力してください。")
+	public boolean isPostDateAfter1970() {
+	    return postDate == null || !postDate.isBefore(LocalDate.of(1970, 1, 1));
+	}
 	
 	@NotNull(message="入力してください。")
 	@Min(value=1, message="1-5で指定してください。")

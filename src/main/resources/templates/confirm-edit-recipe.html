@@ -67,7 +67,7 @@
 		<input type="submit" value="更新" class="btn">
 	</form>
 
-    <form th:action="@{/show-recipe-form-ret}" method="POST"
+    <form th:action="@{/show-edit-form}" method="POST"
 			th:object="${editRecipeForm}">
 		<input type="hidden" th:field="*{userName}">
 		<input type="hidden" th:field="*{recipeName}">
