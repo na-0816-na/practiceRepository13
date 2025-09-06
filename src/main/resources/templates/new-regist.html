@@ -18,6 +18,7 @@
     	【PW】<br>
 		<input type="text" th:field="*{passWord}" class="passWord" ><br>
 		<div th:if="${#fields.hasErrors('passWord')}" th:errors="*{passWord}" class="error-msg"></div>
+		
 		<br>
 		【ユーザー名】<br>
 		<input type="text" th:field="*{userName}" class="userName" ><br>

@@ -88,6 +88,10 @@ public class LoginController {
 			return "new-regist";
 			
 		}
+		if (service.existsByUserName(form.getUserName())) {
+		    result.rejectValue("userName", "duplicate", "このユーザー名は既に使われています");
+		    return "new-regist";
+		}
 		
 		User r = new User();
 		r.setEmail(form.getEmail());

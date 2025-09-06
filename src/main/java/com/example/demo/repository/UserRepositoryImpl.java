@@ -29,6 +29,12 @@ public class UserRepositoryImpl implements UserRepository {
 									 user.getUserName());
 									 
 	}
+	@Override
+	public boolean existsByUserName(String userName) {
+	    String sql = "SELECT COUNT(*) FROM m_user WHERE user_name = ?";
+	    Integer count = jdbcTemplate.queryForObject(sql, Integer.class, userName);
+	    return count != null && count > 0;
+	}
 
 	@Override
 	public User findByEmail(String email) {

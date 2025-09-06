@@ -7,6 +7,7 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -25,9 +26,11 @@ public class RegistRecipeForm {
 	private Integer recipeId;
 	
 	@Size(min=1, max=64, message="1文字から64文字で指定してください。")
+	@Pattern(regexp = ".*\\S.*", message = "空白のみは入力できません。")
 	private String recipeName;
 	
 	@Size(min=1, max=64, message="1文字から64文字で指定してください。")
+	@Pattern(regexp = ".*\\S.*", message = "空白のみは入力できません。")
 	private String catchPhrase;
 	
 	private String categoryName;
@@ -37,6 +40,7 @@ public class RegistRecipeForm {
 	private Integer categoryId;
 
 	@Size(min=1, max=10000, message="1文字から10000文字で指定してください。")
+	@Pattern(regexp = ".*\\S.*", message = "空白のみは入力できません。")
 	private String howTo;
 
 	@PastOrPresent(message="今日以前の日付を入力してください。")
